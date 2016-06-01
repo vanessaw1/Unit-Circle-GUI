@@ -20,15 +20,6 @@ public class Circle
 		sin = new String [] {"0","1/2","\u221A2/2","\u221A3/2","1","\u221A3/2","\u221A2/2","1/2","0","-1/2","-\u221A2/2","-\u221A3/2","-1","-\u221A3/2","-\u221A2/2","-1/2"};
 		tan = new String [] {"0","1/\u221A3","1","\u221A3","undef","-\u221A3","-1","-1/\u221A3","0","1/\u221A3","1","\u221A3","undef","-\u221A3","-1","-1/\u221A3"};	
 		
-		setImage();
-	}
-	
-	
-	//call this from main quite a bit
-	public void setImage() throws IOException
-	{
-		angle = (int)(Math.random()*16);
-		//picture = ImageIO.read(new File("src/circle"+angle+".png"));	
 	}
 	
 	public String getDegree()
@@ -44,34 +35,6 @@ public class Circle
 	public int getAngle()
 	{
 		return angle;
-	}
-	public boolean correct(String type, String answer)
-	{
-		if(type.equals("cos"))
-			if(answer.equals(cos[angle]))
-				return true;
-		if(type.equals("sin"))
-			if(answer.equals(sin[angle]))
-				return true;
-		if(type.equals("tan"))
-			if(answer.equals(tan[angle]))
-				return true;
-		return false;
-		
-	}
-	
-	public static void main(String [] args) throws IOException
-	{
-		Circle c = new Circle();
-		System.out.println(angle);
-
-		Scanner s = new Scanner(System.in);
-		
-		String temp = s.next();
-		System.out.println(c.correct("cos", temp));
-		
-		String temp2 = s.next();
-		System.out.println(c.correct("sin", temp));
 	}
 	
 }

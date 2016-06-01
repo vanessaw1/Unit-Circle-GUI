@@ -28,23 +28,29 @@ public class UnitCircleMain extends JFrame{
 	public JButton generate, check, solution;
 	public GridBagConstraints c;
 	
+	public static int num = 0;
+	
 	public AnswerTypeActionListener at;
+	public AngleTypeActionListener angt;
+	public RandomNumberGeneratorActionListener rng;
+	public CheckAnswerActionListener ca;
 	
 	public UnitCircleMain() {
 		
 		super("Unit Circle");
 		
+		try {
+			new Circle();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
 		p = new JPanel(new GridBagLayout());
 		
-		try {
-			circle = ImageIO.read(new File("src/circle 0.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		//resizeCircle = (BufferedImage) circle.getScaledInstance(20, 20, Image.SCALE_DEFAULT);
 		//pic = new JLabel(new ImageIcon(resizeCircle));
 		
-		sin = new JRadioButton("sin");
+		sin = new JRadioButton("sin", true);
 		cos = new JRadioButton("cos");
 		tan = new JRadioButton("tan");
 		sin.setActionCommand(sin.getText());
@@ -55,43 +61,47 @@ public class UnitCircleMain extends JFrame{
 		function.add(cos);
 		function.add(tan);
 		
-		degrees = new JRadioButton("Degrees");
+		degrees = new JRadioButton("Degrees", true);
 		radians = new JRadioButton("Radians");
+		degrees.setActionCommand(degrees.getText());
+		radians.setActionCommand(radians.getText());
 		angleType = new ButtonGroup();
 		angleType.add(degrees);
 		angleType.add(radians);
 		
-		givenAngle = new JLabel("Angle: [Random angle here]");
+		givenAngle = new JLabel("Angle: 0\u00B0 or 360\u00B0");
 		
-		answerType = new JLabel("sin: ");
+		answerType = new JLabel("sin:");
 		answer = new JTextField(10);
 		
 		generate = new JButton("Generate Angle");
-		check = new JButton("Check Answers");
+		check = new JButton("Check Answer");
 		solution = new JButton("Get Solution");
 		
 		at = new AnswerTypeActionListener(answerType, function);
+		angt = new AngleTypeActionListener(givenAngle, angleType);
+		rng = new RandomNumberGeneratorActionListener(givenAngle, degrees);
+		ca = new CheckAnswerActionListener(angleType, answer);
 		
+		// Begin Component Placement
 		c = new GridBagConstraints();
-		
-		c.gridx = 0;
-		c.gridy = 0;
-		p.add(sin, c);
-		
-		c.gridx = 1;
-		p.add(cos, c);
-		
-		c.gridx = 2;
-		p.add(tan, c);
-		
-		c.gridx = 0;
-		c.gridy = 1;
-		p.add(degrees, c);
-		
-		c.gridx = 1;
-		p.add(radians, c);
-		
-		c.gridy = 2;
+        c.gridx = 0;
+        c.gridy = 0;
+        p.add(sin, c);
+        
+        c.gridy = 1;
+        p.add(cos,  c);
+        
+        c.gridy = 2;
+        p.add(tan, c);
+        
+        c.gridx = 2;
+        c.gridy = 0;
+        p.add(degrees,  c);
+        c.gridy = 1;
+        p.add(radians,  c);
+        
+		c.gridy = 3;
 		p.add(Box.createVerticalStrut(100),c);
 		
 		c.gridx = 0;
@@ -116,13 +126,19 @@ public class UnitCircleMain extends JFrame{
 		
 		c.gridx = 2;
 		p.add(solution, c);
+		// End Component Placement
 		
 		// Begin ActionListeners
 		sin.addActionListener(at);
 		cos.addActionListener(at);
 		tan.addActionListener(at);
-		// End ActionListeners
 		
+		degrees.addActionListener(angt);
+		radians.addActionListener(angt);
+		generate.addActionListener(rng);
+		
+		check.addActionListener(ca);
+		// End ActionListeners
 		
 		add(p);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
