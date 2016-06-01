@@ -47,6 +47,9 @@ public class UnitCircleMain extends JFrame{
 		sin = new JRadioButton("sin");
 		cos = new JRadioButton("cos");
 		tan = new JRadioButton("tan");
+		sin.setActionCommand(sin.getText());
+		cos.setActionCommand(cos.getText());
+		tan.setActionCommand(tan.getText());
 		function = new ButtonGroup();
 		function.add(sin);
 		function.add(cos);
@@ -67,7 +70,7 @@ public class UnitCircleMain extends JFrame{
 		check = new JButton("Check Answers");
 		solution = new JButton("Get Solution");
 		
-		at = new AnswerTypeActionListener(answerType);
+		at = new AnswerTypeActionListener(answerType, function);
 		
 		c = new GridBagConstraints();
 		
