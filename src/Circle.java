@@ -1,0 +1,77 @@
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
+
+import javax.imageio.ImageIO;
+
+//import java.io.PrintStream;
+
+public class Circle
+{
+	public static String [] degree, radian, cos, sin, tan;
+	public static int angle;
+	//public BufferedImage picture = new BufferedImage(0, 0, 0);
+	
+	public Circle() throws IOException{		
+		degree = new String [] {"0\u00B0 or 360\u00B0","30\u00B0", "45\u00B0", "60\u00B0", "90\u00B0", "120\u00B0", "135\u00B0", "150\u00B0", "180\u00B0", "210\u00B0", "225\u00B0", "240\u00B0", "270\u00B0", "300\u00B0", "315\u00B0", "330\u00B0"}; 
+		radian = new String [] {"0 or 2\u03C0","\u03C0/6","\u03C0/4","\u03C0/3","\u03C0/2","2\u03C0/3","3\u03C0/4","5\u03C0/6","\u03C0","7\u03C0/6","5\u03C0/4","4\u03C0/3","3\u03C0/2","5\u03C0/3","7\u03C0/4","11\u03C0/6"};
+		cos = new String [] {"1","\u221A3/2","\u221A2/2","1/2","0","-1/2","-\u221A2/2","-\u221A3/2","-1","-\u221A3/2","-\u221A2/2","-1/2","0","1/2","\u221A2/2","\u221A3/2"};
+		sin = new String [] {"0","1/2","\u221A2/2","\u221A3/2","1","\u221A3/2","\u221A2/2","1/2","0","-1/2","-\u221A2/2","-\u221A3/2","-1","-\u221A3/2","-\u221A2/2","-1/2"};
+		tan = new String [] {"0","1/\u221A3","1","\u221A3","undef","-\u221A3","-1","-1/\u221A3","0","1/\u221A3","1","\u221A3","undef","-\u221A3","-1","-1/\u221A3"};	
+		
+		setImage();
+	}
+	
+	
+	//call this from main quite a bit
+	public void setImage() throws IOException
+	{
+		angle = (int)(Math.random()*16);
+		//picture = ImageIO.read(new File("src/circle"+angle+".png"));	
+	}
+	
+	public String getDegree()
+	{
+		return degree[angle];
+	}
+	
+	public String getRadian()
+	{
+		return radian[angle];
+	}
+	
+	public int getAngle()
+	{
+		return angle;
+	}
+	public boolean correct(String type, String answer)
+	{
+		if(type.equals("cos"))
+			if(answer.equals(cos[angle]))
+				return true;
+		if(type.equals("sin"))
+			if(answer.equals(sin[angle]))
+				return true;
+		if(type.equals("tan"))
+			if(answer.equals(tan[angle]))
+				return true;
+		return false;
+		
+	}
+	
+	public static void main(String [] args) throws IOException
+	{
+		Circle c = new Circle();
+		System.out.println(angle);
+
+		Scanner s = new Scanner(System.in);
+		
+		String temp = s.next();
+		System.out.println(c.correct("cos", temp));
+		
+		String temp2 = s.next();
+		System.out.println(c.correct("sin", temp));
+	}
+	
+}
