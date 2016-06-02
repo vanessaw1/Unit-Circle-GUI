@@ -5,3 +5,5 @@
 /RandomNumberGeneratorActionListener.class
 /AngleTypeActionListener.class
 /CheckAnswerActionListener.class
+/GetSolutionActionListener.class
+/IsCorrectActionListener.class
