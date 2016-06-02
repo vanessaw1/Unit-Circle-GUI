@@ -23,7 +23,7 @@ public class UnitCircleMain extends JFrame{
 	public JRadioButton sin, cos, tan;
 	public ButtonGroup function, angleType;
 	public JRadioButton degrees, radians;
-	public JLabel givenAngle, answerType;
+	public JLabel givenAngle, answerType, isCorrect;
 	public JTextField answer;
 	public JButton generate, check, solution;
 	public GridBagConstraints c;
@@ -34,6 +34,7 @@ public class UnitCircleMain extends JFrame{
 	public AngleTypeActionListener angt;
 	public RandomNumberGeneratorActionListener rng;
 	public CheckAnswerActionListener ca;
+	public GetSolutionActionListener gs;
 	
 	public UnitCircleMain() {
 		
@@ -73,6 +74,7 @@ public class UnitCircleMain extends JFrame{
 		
 		answerType = new JLabel("sin:");
 		answer = new JTextField(10);
+		isCorrect = new JLabel();
 		
 		generate = new JButton("Generate Angle");
 		check = new JButton("Check Answer");
@@ -81,7 +83,8 @@ public class UnitCircleMain extends JFrame{
 		at = new AnswerTypeActionListener(answerType, function);
 		angt = new AngleTypeActionListener(givenAngle, angleType);
 		rng = new RandomNumberGeneratorActionListener(givenAngle, degrees);
-		ca = new CheckAnswerActionListener(angleType, answer);
+		ca = new CheckAnswerActionListener(function, answer, answerType, isCorrect);
+		gs = new GetSolutionActionListener();
 		
 		// Begin Component Placement
 		c = new GridBagConstraints();
@@ -116,6 +119,10 @@ public class UnitCircleMain extends JFrame{
 		
 		c.gridx = 1;
 		p.add(answer, c);
+		
+		c.gridx = 1;
+		c.gridy = 6;
+		p.add(isCorrect, c);
 		
 		c.gridx = 0;
 		c.gridy = 5;
