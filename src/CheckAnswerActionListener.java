@@ -11,30 +11,44 @@ public class CheckAnswerActionListener implements ActionListener{
 
 	private ButtonGroup angleType;
 	private JTextField answer;
+	private JLabel answerType;
+	private JLabel isCorrect;
 	
-	public CheckAnswerActionListener(ButtonGroup angleType, JTextField answer) {
+	public CheckAnswerActionListener(ButtonGroup angleType, JTextField answer, JLabel answerType, JLabel isCorrect) {
 		this.angleType = angleType;
 		this.answer = answer;
+		this.answerType = answerType;
+		this.isCorrect = isCorrect;
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-			
+		
+		//the user's answer
 		String input = answer.getText();
-		String label = angleType.getSelection().getActionCommand();
+		//angle measure
+		String angle = Circle.degree[UnitCircleMain.num];
+		System.out.println(angle);
+		//cos sin or tan
+		String type = answerType.getText();
 		
-		/*if (label.equals("cos:") && input.equals(Circle.cos[1])) {
-			// Insert correct/incorrect indicator somewhere
-			System.out.println("Correct cos");
-		} else if (label.equals("sin:") && input.equals(Circle.sin[1])) {
-			System.out.println("Correct sin");
-		} else if (label.equals("tan:") && input.equals(Circle.tan[1])) {
-			System.out.println("Correct tan");
-		} else {
-			System.out.println("Error");
-		}*/
+		if (type.equals("cos:") && input.equals(Circle.cos[UnitCircleMain.num])) {
+			
+			isCorrect.setText("Correct!");
+		}
+		else if (type.equals("sin:") && input.equals(Circle.sin[UnitCircleMain.num])) {
+			
+			isCorrect.setText("Correct!");
+		}
+		else if (type.equals("tan:") && input.equals(Circle.tan[UnitCircleMain.num])) {
+			
+			isCorrect.setText("Correct!");
+		}
+		else {
+			
+			isCorrect.setText("Incorrect");
+		}
 		
-		// Test
-		System.out.println("Check Answer button clicked");
+		
 
 	}
 
