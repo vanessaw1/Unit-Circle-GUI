@@ -25,17 +25,18 @@ public class UnitCircleMain extends JFrame{
 	public JRadioButton degrees, radians;
 	public JLabel givenAngle, answerType, isCorrect;
 	public JTextField answer;
-	public JButton generate, check, solution;
+	public JButton generate, check, solution, sqrtSymbol;	//added sqrtSymbol button
 	public GridBagConstraints c;
 	
 	public static int num = 0;
+	public static String answer1 = "";	//add ;) for vanessa
 	
 	public AnswerTypeActionListener at;
 	public AngleTypeActionListener angt;
 	public RandomNumberGeneratorActionListener rng;
 	public CheckAnswerActionListener ca;
-	public GetSolutionActionListener gs;
-	
+	public SqrtSymbolActionListener sqrt;
+	//td - add label = undefined = "undef"; - must be in that spelling to work :)
 	public UnitCircleMain() {
 		
 		super("Unit Circle");
@@ -79,13 +80,14 @@ public class UnitCircleMain extends JFrame{
 		generate = new JButton("Generate Angle");
 		check = new JButton("Check Answer");
 		solution = new JButton("Get Solution");
+		sqrtSymbol = new JButton("\u221A"); //updated
 		
 		at = new AnswerTypeActionListener(answerType, function);
 		angt = new AngleTypeActionListener(givenAngle, angleType);
 		rng = new RandomNumberGeneratorActionListener(givenAngle, degrees);
-		ca = new CheckAnswerActionListener(function, answer, answerType, isCorrect);
-		gs = new GetSolutionActionListener();
-		
+		ca = new CheckAnswerActionListener(angleType, answer, answerType, isCorrect);
+		sqrt = new SqrtSymbolActionListener(sqrtSymbol, answer);
+				
 		// Begin Component Placement
 		c = new GridBagConstraints();
         c.gridx = 0;
@@ -120,6 +122,9 @@ public class UnitCircleMain extends JFrame{
 		c.gridx = 1;
 		p.add(answer, c);
 		
+		c.gridx = 2;			//add
+		p.add(sqrtSymbol, c);	//add
+		
 		c.gridx = 1;
 		c.gridy = 6;
 		p.add(isCorrect, c);
@@ -143,6 +148,9 @@ public class UnitCircleMain extends JFrame{
 		degrees.addActionListener(angt);
 		radians.addActionListener(angt);
 		generate.addActionListener(rng);
+		
+		sqrtSymbol.addActionListener(sqrt);
+		
 		
 		check.addActionListener(ca);
 		// End ActionListeners
