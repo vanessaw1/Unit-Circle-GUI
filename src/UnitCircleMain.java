@@ -1,3 +1,4 @@
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.image.BufferedImage;
@@ -23,7 +24,7 @@ public class UnitCircleMain extends JFrame{
 	public JRadioButton sin, cos, tan;
 	public ButtonGroup function, angleType;
 	public JRadioButton degrees, radians;
-	public JLabel givenAngle, answerType, isCorrect;
+	public JLabel givenAngle, answerType, isCorrect, undef;
 	public JTextField answer;
 	public JButton generate, check, solution, sqrtSymbol;	//added sqrtSymbol button
 	public GridBagConstraints c;
@@ -36,7 +37,8 @@ public class UnitCircleMain extends JFrame{
 	public RandomNumberGeneratorActionListener rng;
 	public CheckAnswerActionListener ca;
 	public SqrtSymbolActionListener sqrt;
-	public GetSolutionActionListener gs;
+	public GetSolutionActionListener sol;
+	
 	//td - add label = undefined = "undef"; - must be in that spelling to work :)
 	public UnitCircleMain() {
 		
@@ -56,7 +58,12 @@ public class UnitCircleMain extends JFrame{
 		sin = new JRadioButton("sin", true);
 		cos = new JRadioButton("cos");
 		tan = new JRadioButton("tan");
-		sin.setActionCommand(sin.getText());
+		Font f = new Font("serif", Font.PLAIN, 20);
+		sin.setFont(f);
+		cos.setFont(f);
+		tan.setFont(f);
+		
+		sin.setActionCommand(sin.getText());	//what does this do?
 		cos.setActionCommand(cos.getText());
 		tan.setActionCommand(tan.getText());
 		function = new ButtonGroup();
@@ -72,30 +79,44 @@ public class UnitCircleMain extends JFrame{
 		angleType.add(degrees);
 		angleType.add(radians);
 		
+		degrees.setFont(f);
+		radians.setFont(f);
+		
+		
 		givenAngle = new JLabel("Angle: 0\u00B0 or 360\u00B0");
+		givenAngle.setFont(f);
+		
 		
 		answerType = new JLabel("sin:");
+		answerType.setFont(f);
 		answer = new JTextField(10);
-		isCorrect = new JLabel("...");
+		answer.setFont(f);
+		isCorrect = new JLabel();
+		isCorrect.setFont(f);
+		undef = new JLabel("Type \"undef\" for undefined");
+		undef.setFont(f);
 		
 		generate = new JButton("Generate Angle");
+		generate.setFont(f);
 		check = new JButton("Check Answer");
+		check.setFont(f);
 		solution = new JButton("Get Solution");
+		solution.setFont(f);
 		sqrtSymbol = new JButton("\u221A"); //updated
+		sqrtSymbol.setFont(f);
 		
 		at = new AnswerTypeActionListener(answerType, function);
 		angt = new AngleTypeActionListener(givenAngle, angleType);
-		rng = new RandomNumberGeneratorActionListener(givenAngle, degrees, answer, isCorrect);
+		rng = new RandomNumberGeneratorActionListener(givenAngle, degrees, answer);
 		ca = new CheckAnswerActionListener(angleType, answer, answerType, isCorrect);
 		sqrt = new SqrtSymbolActionListener(sqrtSymbol, answer);
-		gs = new GetSolutionActionListener(answer, answerType);
-				
+		sol = new GetSolutionActionListener(answer, answerType);
+		
 		// Begin Component Placement
 		c = new GridBagConstraints();
         c.gridx = 0;
         c.gridy = 0;
         p.add(sin, c);
-        
         c.gridy = 1;
         p.add(cos,  c);
         
@@ -132,6 +153,9 @@ public class UnitCircleMain extends JFrame{
 		p.add(isCorrect, c);
 		
 		c.gridx = 0;
+		p.add(undef, c);
+		
+ 		c.gridx = 0;
 		c.gridy = 5;
 		p.add(generate, c);
 		
@@ -152,7 +176,8 @@ public class UnitCircleMain extends JFrame{
 		generate.addActionListener(rng);
 		
 		sqrtSymbol.addActionListener(sqrt);
-		solution.addActionListener(gs);
+		solution.addActionListener(sol);
+		
 		check.addActionListener(ca);
 		// End ActionListeners
 		
