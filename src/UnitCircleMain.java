@@ -103,7 +103,7 @@ public class UnitCircleMain extends JFrame{
 		isCorrect.setFont(f);
 		undef = new JLabel("[Type \"undef\" for undefined]");
 		undef.setFont(f);
-		other = new JLabel("Denominator must be rationalized");
+		other = new JLabel("[Denominator must be rationalized]");
 		other.setFont(f);
 		
 		generate = new JButton("Generate Angle");
