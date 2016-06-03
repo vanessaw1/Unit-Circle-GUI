@@ -27,7 +27,7 @@ public class UnitCircleMain extends JFrame{
 	public JRadioButton sin, cos, tan;
 	public ButtonGroup function, angleType;
 	public JRadioButton degrees, radians;
-	public JLabel givenAngle, answerType, isCorrect, undef;
+	public JLabel givenAngle, answerType, isCorrect, undef, other;
 	public JTextField answer;
 	public JButton generate, check, solution, sqrtSymbol;	//added sqrtSymbol button
 	public GridBagConstraints c;
@@ -42,7 +42,6 @@ public class UnitCircleMain extends JFrame{
 	public SqrtSymbolActionListener sqrt;
 	public GetSolutionActionListener sol;
 	
-	//td - add label = undefined = "undef"; - must be in that spelling to work :)
 	public UnitCircleMain() {
 		
 		super("Unit Circle");
@@ -104,6 +103,8 @@ public class UnitCircleMain extends JFrame{
 		isCorrect.setFont(f);
 		undef = new JLabel("[Type \"undef\" for undefined]");
 		undef.setFont(f);
+		other = new JLabel("Denominator must be rationalized");
+		other.setFont(f);
 		
 		generate = new JButton("Generate Angle");
 		generate.setFont(f);
@@ -166,6 +167,9 @@ public class UnitCircleMain extends JFrame{
 		c.gridx = 1;
 		c.gridy = 8;
 		p.add(undef, c);
+		
+		c.gridy = 7;
+		p.add(other, c);
 	
 		c.gridy = 6;
 		p.add(isCorrect, c);
