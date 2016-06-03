@@ -27,7 +27,7 @@ public class CheckAnswerActionListener implements ActionListener{
 		String input = answer.getText();
 		//angle measure
 		String angle = Circle.degree[UnitCircleMain.num];
-		System.out.println(angle);
+		//System.out.println(angle);
 		//cos sin or tan
 		String type = answerType.getText();
 		
