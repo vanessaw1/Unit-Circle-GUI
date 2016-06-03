@@ -16,8 +16,9 @@ public class SqrtSymbolActionListener implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		answer.setText("\u221A");
-
+`		String temp = answer.getText();
+		temp += "\u221A";
+		answer.setText(temp);
 	}
 
 }
