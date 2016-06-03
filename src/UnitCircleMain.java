@@ -36,6 +36,7 @@ public class UnitCircleMain extends JFrame{
 	public RandomNumberGeneratorActionListener rng;
 	public CheckAnswerActionListener ca;
 	public SqrtSymbolActionListener sqrt;
+	public GetSolutionActionListener gs;
 	//td - add label = undefined = "undef"; - must be in that spelling to work :)
 	public UnitCircleMain() {
 		
@@ -75,7 +76,7 @@ public class UnitCircleMain extends JFrame{
 		
 		answerType = new JLabel("sin:");
 		answer = new JTextField(10);
-		isCorrect = new JLabel();
+		isCorrect = new JLabel("...");
 		
 		generate = new JButton("Generate Angle");
 		check = new JButton("Check Answer");
@@ -84,9 +85,10 @@ public class UnitCircleMain extends JFrame{
 		
 		at = new AnswerTypeActionListener(answerType, function);
 		angt = new AngleTypeActionListener(givenAngle, angleType);
-		rng = new RandomNumberGeneratorActionListener(givenAngle, degrees);
+		rng = new RandomNumberGeneratorActionListener(givenAngle, degrees, answer, isCorrect);
 		ca = new CheckAnswerActionListener(angleType, answer, answerType, isCorrect);
 		sqrt = new SqrtSymbolActionListener(sqrtSymbol, answer);
+		gs = new GetSolutionActionListener(answer, answerType);
 				
 		// Begin Component Placement
 		c = new GridBagConstraints();
@@ -150,8 +152,7 @@ public class UnitCircleMain extends JFrame{
 		generate.addActionListener(rng);
 		
 		sqrtSymbol.addActionListener(sqrt);
-		
-		
+		solution.addActionListener(gs);
 		check.addActionListener(ca);
 		// End ActionListeners
 		
