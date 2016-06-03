@@ -19,9 +19,8 @@ public class RandomNumberGeneratorActionListener implements ActionListener{
 	private JLabel angleType;
 	private JRadioButton degrees;
 	private JTextField answer;
-	private JLabel isCorrect;
+	private JLabel isCorrect, pic;
 	private JButton check;
-	private JLabel pic;
 	private BufferedImage circle;
 	
 	public RandomNumberGeneratorActionListener(JLabel angleType, JRadioButton degrees, JTextField answer, JLabel isCorrect, JButton check, JLabel pic) {
@@ -34,22 +33,16 @@ public class RandomNumberGeneratorActionListener implements ActionListener{
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		
-		int temp = UnitCircleMain.num;
-		while (temp == UnitCircleMain.num) {
-			UnitCircleMain.num = (int)(Math.random()*16);
-		}
-		
+		UnitCircleMain.num = (int)(Math.random()*16);
 		check.setEnabled(true);
 		
-		// Add circle image
-			try {
-				circle = ImageIO.read(new File("images/circle " + UnitCircleMain.num + ".png"));
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-		pic.setIcon(new ImageIcon(circle.getScaledInstance(400, 400, Image.SCALE_DEFAULT)));
-		// End
+		try{
+			circle = ImageIO.read(new File("images/circle "+UnitCircleMain.num+".png"));
+			pic.setIcon(new ImageIcon(circle));
+		} catch(IOException e1){
+			e1.printStackTrace();
+		}
+		
 		
 		answer.setText("");
 		isCorrect.setText("...");
