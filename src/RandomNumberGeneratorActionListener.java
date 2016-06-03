@@ -1,6 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -13,16 +14,19 @@ public class RandomNumberGeneratorActionListener implements ActionListener{
 	private JRadioButton degrees;
 	private JTextField answer;
 	private JLabel isCorrect;
+	private JButton check;
 	
-	public RandomNumberGeneratorActionListener(JLabel angleType, JRadioButton degrees, JTextField answer, JLabel isCorrect) {
+	public RandomNumberGeneratorActionListener(JLabel angleType, JRadioButton degrees, JTextField answer, JLabel isCorrect, JButton check) {
 		this.angleType = angleType;
 		this.degrees = degrees;
 		this.answer = answer;
 		this.isCorrect = isCorrect;
+		this.check = check;
 	}
 	
 	public void actionPerformed(ActionEvent e) {
 		UnitCircleMain.num = (int)(Math.random()*16);
+		check.setEnabled(true);
 		
 		answer.setText("");
 		isCorrect.setText("...");

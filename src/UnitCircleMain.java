@@ -107,10 +107,10 @@ public class UnitCircleMain extends JFrame{
 		
 		at = new AnswerTypeActionListener(answerType, function);
 		angt = new AngleTypeActionListener(givenAngle, angleType);
-		rng = new RandomNumberGeneratorActionListener(givenAngle, degrees, answer, isCorrect);
+		rng = new RandomNumberGeneratorActionListener(givenAngle, degrees, answer, isCorrect, check);
 		ca = new CheckAnswerActionListener(angleType, answer, answerType, isCorrect);
 		sqrt = new SqrtSymbolActionListener(sqrtSymbol, answer);
-		sol = new GetSolutionActionListener(answer, answerType);
+		sol = new GetSolutionActionListener(answer, answerType, check);
 		
 		// Begin Component Placement
 		c = new GridBagConstraints();

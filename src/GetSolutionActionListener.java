@@ -1,6 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -9,14 +10,17 @@ public class GetSolutionActionListener implements ActionListener {
 
 	private JTextField answer;
 	private JLabel answerType;
+	JButton check;
 	
-	public GetSolutionActionListener(JTextField answer, JLabel answerType) {
+	public GetSolutionActionListener(JTextField answer, JLabel answerType, JButton check) {
 		this.answer = answer;
 		this.answerType = answerType;
+		this.check = check;
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		/*String type = answerType.getText();
+		String type = answerType.getText();
+		check.setEnabled(false);
 			
 		if (type.equals("cos:"))
 			answer.setText((Circle.cos[UnitCircleMain.num]));
@@ -26,7 +30,7 @@ public class GetSolutionActionListener implements ActionListener {
 		else if (type.equals("tan:"))
 			answer.setText((Circle.tan[UnitCircleMain.num]));
 		else
-			answer.setText("ERROR...");*/
+			answer.setText("ERROR...");
 	}
 
 	/*
