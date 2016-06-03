@@ -32,16 +32,4 @@ public class GetSolutionActionListener implements ActionListener {
 		else
 			answer.setText("ERROR...");
 	}
-
-	/*
-	 * TD:
-	 * after "get solution", make it so they can't do "check answer" cause that defeats the purpose
-	 * also if we add a counter of correct/incorrect, this will throw it off
-	 * 
-	 * and... work on layout, text font, text size, and IMAGES!
-	 */
-	
-	/*
-	 * when creating this, i also updated main and the randomnumbergenerator class
-	 */
 }
