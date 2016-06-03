@@ -63,7 +63,7 @@ public class UnitCircleMain extends JFrame{
 		cos.setFont(f);
 		tan.setFont(f);
 		
-		sin.setActionCommand(sin.getText());	//what does this do?
+		sin.setActionCommand(sin.getText());	//Can't use .getText() directly for some reason, must do this
 		cos.setActionCommand(cos.getText());
 		tan.setActionCommand(tan.getText());
 		function = new ButtonGroup();
@@ -91,7 +91,7 @@ public class UnitCircleMain extends JFrame{
 		answerType.setFont(f);
 		answer = new JTextField(10);
 		answer.setFont(f);
-		isCorrect = new JLabel();
+		isCorrect = new JLabel("...");
 		isCorrect.setFont(f);
 		undef = new JLabel("Type \"undef\" for undefined");
 		undef.setFont(f);
@@ -107,7 +107,7 @@ public class UnitCircleMain extends JFrame{
 		
 		at = new AnswerTypeActionListener(answerType, function);
 		angt = new AngleTypeActionListener(givenAngle, angleType);
-		rng = new RandomNumberGeneratorActionListener(givenAngle, degrees, answer);
+		rng = new RandomNumberGeneratorActionListener(givenAngle, degrees, answer, isCorrect);
 		ca = new CheckAnswerActionListener(angleType, answer, answerType, isCorrect);
 		sqrt = new SqrtSymbolActionListener(sqrtSymbol, answer);
 		sol = new GetSolutionActionListener(answer, answerType);
