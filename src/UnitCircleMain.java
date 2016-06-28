@@ -6,6 +6,7 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 import javax.imageio.ImageIO;
 import javax.swing.Box;
@@ -22,7 +23,7 @@ import javax.swing.JTextField;
 public class UnitCircleMain extends JFrame{
 	
 	public JPanel p, p2;
-	public BufferedImage circle, resizeCircle;
+	public BufferedImage resizeCircle;
 	public JLabel pic;
 	public JRadioButton sin, cos, tan;
 	public ButtonGroup function, angleType;
@@ -83,14 +84,17 @@ public class UnitCircleMain extends JFrame{
 		radians.setFont(f);
 		
 		// Add circle image
-		try {
+		/*try {
 			circle = ImageIO.read(new File("images/circle blank.png"));
 			pic = new JLabel(new ImageIcon(circle));
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}*/
 		//pic = new JLabel(new ImageIcon(circle));
-		// End
+		
+		
+		//circle = ImageIO.read(new File("images/circle blank.png"));
+		pic = new JLabel(new ImageIcon(getClass().getResource("circle blank.png")));
 		
 		givenAngle = new JLabel("Angle: 0\u00B0 or 360\u00B0");
 		givenAngle.setFont(f);

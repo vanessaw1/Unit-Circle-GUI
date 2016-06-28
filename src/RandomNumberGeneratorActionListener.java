@@ -36,13 +36,7 @@ public class RandomNumberGeneratorActionListener implements ActionListener{
 		UnitCircleMain.num = (int)(Math.random()*16);
 		check.setEnabled(true);
 		
-		try{
-			circle = ImageIO.read(new File("images/circle "+UnitCircleMain.num+".png"));
-			pic.setIcon(new ImageIcon(circle));
-		} catch(IOException e1){
-			e1.printStackTrace();
-		}
-		
+		pic.setIcon(new ImageIcon(getClass().getResource("circle "+UnitCircleMain.num+".png")));
 		
 		answer.setText("");
 		isCorrect.setText("...");
