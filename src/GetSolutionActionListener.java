@@ -24,11 +24,16 @@ public class GetSolutionActionListener implements ActionListener {
 			
 		if (type.equals("cos:"))
 			answer.setText((Circle.cos[UnitCircleMain.num]));
-
 		else if (type.equals("sin:"))
 			answer.setText((Circle.sin[UnitCircleMain.num]));
 		else if (type.equals("tan:"))
 			answer.setText((Circle.tan[UnitCircleMain.num]));
+		else if (type.equals("sec:"))
+			answer.setText((Circle.sec[UnitCircleMain.num]));
+		else if (type.equals("csc:"))
+			answer.setText((Circle.csc[UnitCircleMain.num]));
+		else if (type.equals("cot:"))
+			answer.setText((Circle.cot[UnitCircleMain.num]));
 		else
 			answer.setText("ERROR...");
 	}

@@ -19,22 +19,22 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-
 public class UnitCircleMain extends JFrame{
 	
 	public JPanel p, p2;
 	public BufferedImage resizeCircle;
 	public JLabel pic;
-	public JRadioButton sin, cos, tan;
+	public JRadioButton sin, cos, tan, sec, csc, cot;
 	public ButtonGroup function, angleType;
 	public JRadioButton degrees, radians;
-	public JLabel givenAngle, answerType, isCorrect, undef, other;
+	public JLabel givenAngle, answerType, isCorrect, undef, denom, scoreLabel;
 	public JTextField answer;
-	public JButton generate, check, solution, sqrtSymbol;	//added sqrtSymbol button
+	public JButton generate, check, solution, sqrtSymbol;
 	public GridBagConstraints c;
 	
 	public static int num = 0;
 	public static String answer1 = "";
+	public static int score = 0;
 	
 	public AnswerTypeActionListener at;
 	public AngleTypeActionListener angt;
@@ -59,18 +59,30 @@ public class UnitCircleMain extends JFrame{
 		sin = new JRadioButton("sin", true);
 		cos = new JRadioButton("cos");
 		tan = new JRadioButton("tan");
+		sec = new JRadioButton("sec");
+		csc = new JRadioButton("csc");
+		cot = new JRadioButton("cot");
 		Font f = new Font("serif", Font.PLAIN, 20);
 		sin.setFont(f);
 		cos.setFont(f);
 		tan.setFont(f);
+		sec.setFont(f);
+		csc.setFont(f);
+		cot.setFont(f);
 		
 		sin.setActionCommand(sin.getText());
 		cos.setActionCommand(cos.getText());
 		tan.setActionCommand(tan.getText());
+		sec.setActionCommand(sec.getText());
+		csc.setActionCommand(csc.getText());
+		cot.setActionCommand(cot.getText());
 		function = new ButtonGroup();
 		function.add(sin);
 		function.add(cos);
 		function.add(tan);
+		function.add(sec);
+		function.add(csc);
+		function.add(cot);
 		
 		degrees = new JRadioButton("Degrees", true);
 		radians = new JRadioButton("Radians");
@@ -82,19 +94,8 @@ public class UnitCircleMain extends JFrame{
 		
 		degrees.setFont(f);
 		radians.setFont(f);
-		
-		// Add circle image
-		/*try {
-			circle = ImageIO.read(new File("images/circle blank.png"));
-			pic = new JLabel(new ImageIcon(circle));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}*/
-		//pic = new JLabel(new ImageIcon(circle));
-		
-		
-		//circle = ImageIO.read(new File("images/circle blank.png"));
-		pic = new JLabel(new ImageIcon(getClass().getResource("circle blank.png")));
+
+		pic = new JLabel(new ImageIcon(getClass().getResource("circle 0.png")));
 		
 		givenAngle = new JLabel("Angle: 0\u00B0 or 360\u00B0");
 		givenAngle.setFont(f);
@@ -107,8 +108,10 @@ public class UnitCircleMain extends JFrame{
 		isCorrect.setFont(f);
 		undef = new JLabel("[Type \"undef\" for undefined]");
 		undef.setFont(f);
-		other = new JLabel("[Denominator must be rationalized]");
-		other.setFont(f);
+		denom = new JLabel("[Denominator must be rationalized]");
+		denom.setFont(f);
+		scoreLabel = new JLabel("Score: 0");
+		scoreLabel.setFont(f);
 		
 		generate = new JButton("Generate Angle");
 		generate.setFont(f);
@@ -122,7 +125,7 @@ public class UnitCircleMain extends JFrame{
 		at = new AnswerTypeActionListener(answerType, function);
 		angt = new AngleTypeActionListener(givenAngle, angleType);
 		rng = new RandomNumberGeneratorActionListener(givenAngle, degrees, answer, isCorrect, check, pic);
-		ca = new CheckAnswerActionListener(angleType, answer, answerType, isCorrect);
+		ca = new CheckAnswerActionListener(angleType, answer, answerType, isCorrect, scoreLabel, check);
 		sqrt = new SqrtSymbolActionListener(sqrtSymbol, answer);
 		sol = new GetSolutionActionListener(answer, answerType, check);
 		
@@ -133,7 +136,6 @@ public class UnitCircleMain extends JFrame{
         p.add(sin, c);
         c.gridy = 1;
         p.add(cos,  c);
-        
         c.gridy = 2;
         p.add(tan, c);
         
@@ -142,6 +144,14 @@ public class UnitCircleMain extends JFrame{
         p.add(degrees,  c);
         c.gridy = 1;
         p.add(radians,  c);
+        
+        c.gridx = 2;
+        c.gridy = 0;
+        p.add(sec, c);
+        c.gridy = 1;
+        p.add(csc,  c);
+        c.gridy = 2;
+        p.add(cot, c);
         
 		c.gridy = 3;
 		p.add(Box.createVerticalStrut(100),c);
@@ -173,10 +183,13 @@ public class UnitCircleMain extends JFrame{
 		p.add(undef, c);
 		
 		c.gridy = 7;
-		p.add(other, c);
+		p.add(denom, c);
 	
 		c.gridy = 6;
 		p.add(isCorrect, c);
+		
+		c.gridy = 9;
+		p.add(scoreLabel, c);
 		
  		c.gridx = 0;
 		c.gridy = 5;
@@ -193,6 +206,9 @@ public class UnitCircleMain extends JFrame{
 		sin.addActionListener(at);
 		cos.addActionListener(at);
 		tan.addActionListener(at);
+		sec.addActionListener(at);
+		csc.addActionListener(at);
+		cot.addActionListener(at);
 		
 		degrees.addActionListener(angt);
 		radians.addActionListener(angt);
@@ -203,7 +219,6 @@ public class UnitCircleMain extends JFrame{
 		
 		check.addActionListener(ca);
 		// End ActionListeners
-		
 		
 		add(p2);
 		add(p);

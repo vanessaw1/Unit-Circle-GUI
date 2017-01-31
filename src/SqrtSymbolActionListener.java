@@ -12,7 +12,6 @@ public class SqrtSymbolActionListener implements ActionListener {
 	public SqrtSymbolActionListener(JButton button, JTextField answer) {
 		this.button = button;
 		this.answer = answer;
-
 	}
 
 	public void actionPerformed(ActionEvent e) {
